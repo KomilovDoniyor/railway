@@ -15,7 +15,13 @@ public class Main {
     }
 
     private static void printMenu() {
-
+        //1. Barcha reyslarni ko'rish
+        //2. Reys qidirish (qayerdan -> qayerga)
+        //3. Chipta sotib olish
+        //4. Mening chiptalarim
+        //5. Chiptani qaytarish
+        //6. Balansni to'ldirish
+        //0. Chiqish
     }
 
     private static Trip[] createTrips() {
