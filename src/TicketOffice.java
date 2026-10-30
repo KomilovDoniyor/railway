@@ -11,4 +11,6 @@ public class TicketOffice {
         this.tickets = new Ticket[MAX_TICKETS];
         this.ticketCount = 0;
     }
+
+
 }

@@ -2,9 +2,9 @@ import java.util.Scanner;
 
 public class Main {
     private static final Scanner scanner = new Scanner(System.in);
+    private static final Trip[] trips = createTrips();
 
     public static void main(String[] args) {
-        Trip[] trips = createTrips();
         new TicketOffice(trips);
         enterPassengerInfo();
         printMenu();
@@ -12,8 +12,9 @@ public class Main {
         int check = Integer.parseInt(scanner.nextLine().trim());
         switch (check) {
             case 1:
-                showAllTrips(trips);
+                showAllTrips();
         }
+
     }
 
     private static void printMenu() {
@@ -83,18 +84,18 @@ public class Main {
         return result;
     }
 
-    private static void showAllTrips(Trip[] trips) {
+    private static void showAllTrips() {
         System.out.println("\n=========================================");
         System.out.println("            REYS MA'LUMOTLARI            ");
         System.out.println("=========================================");
-
-        for (Trip trip : trips) {
-            trip.print();
-        }
-
+        for (Trip trip : trips) trip.print();
         System.out.println("\n=========================================");
         System.out.println("Jami: " + trips.length + " ta reys");
         System.out.println("=========================================");
 
+        System.out.print("\nID raqamni kiriting!: ");
+        int id = Integer.parseInt(scanner.nextLine().trim());
+        
     }
+
 }

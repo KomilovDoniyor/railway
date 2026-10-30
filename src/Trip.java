@@ -42,13 +42,13 @@ public class Trip implements Printable {
     }
 
     public Train getTrain() {
-        return train;
+        return this.train;
     }
 
     @Override
     public void print() {
         System.out.println("🆔 ID        : " + getId());
-        System.out.println("🚆 Poyezd    : " + getTrain());
+        System.out.println("🚆 Poyezd    : " + getTrain().getName());
         System.out.println("📅 Sana      : " + getDate());
         System.out.println("⏰ Vaqt      : " + getTime());
         System.out.println("📍 Qayerdan  : " + getFromCity());
@@ -56,4 +56,5 @@ public class Trip implements Printable {
         System.out.printf("💰 Narxi     : %,.0f so'm%n", getBasePrice());
         System.out.println("-----------------------------------");
     }
+
 }
