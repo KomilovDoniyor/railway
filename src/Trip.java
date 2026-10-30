@@ -1,4 +1,4 @@
-public class Trip implements Printable{
+public class Trip implements Printable {
     private int id;
     private String fromCity;
     private String toCity;
@@ -47,6 +47,13 @@ public class Trip implements Printable{
 
     @Override
     public void print() {
-        System.out.println();
+        System.out.println("🆔 ID        : " + getId());
+        System.out.println("🚆 Poyezd    : " + getTrain());
+        System.out.println("📅 Sana      : " + getDate());
+        System.out.println("⏰ Vaqt      : " + getTime());
+        System.out.println("📍 Qayerdan  : " + getFromCity());
+        System.out.println("🏁 Qayerga   : " + getToCity());
+        System.out.printf("💰 Narxi     : %,.0f so'm%n", getBasePrice());
+        System.out.println("-----------------------------------");
     }
 }
