@@ -57,4 +57,22 @@ public class Trip implements Printable {
         System.out.println("-----------------------------------");
     }
 
+    public void printWagon() {
+        Wagon[] wagons = getTrain().getWagons();
+        System.out.println("🚆 Poyezd       : " + getTrain().getName() + " (" + getTrain().getNumber() + ")");
+        System.out.println("🚃 Vagonlar soni: " + wagons.length);
+        System.out.println("-----------------------------------");
+        for (Wagon wagon : wagons) {
+            int free = 0;
+            for (Seat seat : wagon.getSeats()) {
+                if (!seat.isBooked()) free++;
+            }
+            System.out.printf("  %d-vagon | %-9s | %d o'rin | bo'sh: %d%n",
+                    wagon.getNumber(), wagon.getType(), wagon.getSeats().length, free);
+        }
+        System.out.println("-----------------------------------");
+    }
+
+    ;
+
 }

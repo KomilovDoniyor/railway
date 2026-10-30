@@ -12,5 +12,11 @@ public class TicketOffice {
         this.ticketCount = 0;
     }
 
+    public Trip findTripById(int id) {
+        for (Trip trip : trips) {
+            if (trip.getId() == id) return trip;
+        }
 
+        return null;
+    }
 }

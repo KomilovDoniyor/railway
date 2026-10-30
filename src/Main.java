@@ -3,16 +3,19 @@ import java.util.Scanner;
 public class Main {
     private static final Scanner scanner = new Scanner(System.in);
     private static final Trip[] trips = createTrips();
+    private static final TicketOffice office = new TicketOffice(trips);
 
     public static void main(String[] args) {
-        new TicketOffice(trips);
-        enterPassengerInfo();
+
+//        enterPassengerInfo();
         printMenu();
 
         int check = Integer.parseInt(scanner.nextLine().trim());
         switch (check) {
             case 1:
                 showAllTrips();
+                showTripById();
+                break;
         }
 
     }
@@ -93,9 +96,19 @@ public class Main {
         System.out.println("Jami: " + trips.length + " ta reys");
         System.out.println("=========================================");
 
-        System.out.print("\nID raqamni kiriting!: ");
-        int id = Integer.parseInt(scanner.nextLine().trim());
-        
+    }
+
+    private static void showTripById() {
+        while (true) {
+            System.out.print("\nID raqamni kiriting!: ");
+            int id = Integer.parseInt(scanner.nextLine().trim());
+            Trip trip = office.findTripById(id);
+            if (trip != null) {
+                trip.printWagon();
+                return;
+            }
+            System.out.println("Kechirasiz bunday " + id + " tripId raqamli findTrip mavjud emas!");
+        }
     }
 
 }

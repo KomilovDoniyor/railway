@@ -13,4 +13,12 @@ public abstract class Wagon {
     public abstract String getType();
 
     public abstract double getMultiplier();
+
+    public Seat[] getSeats() {
+        return this.seats;
+    }
+
+    public int getNumber() {
+        return this.number;
+    }
 }
