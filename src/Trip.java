@@ -57,7 +57,7 @@ public class Trip implements Printable {
         System.out.println("-----------------------------------");
     }
 
-    public void printWagon() {
+    public void printWagons() {
         Wagon[] wagons = getTrain().getWagons();
         System.out.println("🚆 Poyezd       : " + getTrain().getName() + " (" + getTrain().getNumber() + ")");
         System.out.println("🚃 Vagonlar soni: " + wagons.length);
@@ -73,6 +73,15 @@ public class Trip implements Printable {
         System.out.println("-----------------------------------");
     }
 
-    ;
+    public Wagon findOne(int number) {
+        Wagon[] wagons = getTrain().getWagons();
+        for (Wagon wagon : wagons) {
+            if (wagon.getNumber() == number) return wagon;
+        }
+        return null;
+    }
 
+    public void printWagon(){
+        
+    };
 }

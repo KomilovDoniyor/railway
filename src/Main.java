@@ -13,8 +13,9 @@ public class Main {
         int check = Integer.parseInt(scanner.nextLine().trim());
         switch (check) {
             case 1:
-                showAllTrips();
-                showTripById();
+                findAllTrips();
+                Trip trip = findOneTripById();
+                findOneWagon(trip);
                 break;
         }
 
@@ -87,7 +88,7 @@ public class Main {
         return result;
     }
 
-    private static void showAllTrips() {
+    private static void findAllTrips() {
         System.out.println("\n=========================================");
         System.out.println("            REYS MA'LUMOTLARI            ");
         System.out.println("=========================================");
@@ -98,16 +99,30 @@ public class Main {
 
     }
 
-    private static void showTripById() {
+    private static Trip findOneTripById() {
         while (true) {
             System.out.print("\nID raqamni kiriting!: ");
             int id = Integer.parseInt(scanner.nextLine().trim());
             Trip trip = office.findTripById(id);
             if (trip != null) {
-                trip.printWagon();
-                return;
+                trip.printWagons();
+                return trip;
             }
             System.out.println("Kechirasiz bunday " + id + " tripId raqamli findTrip mavjud emas!");
+        }
+    }
+
+    private static void findOneWagon(Trip trip) {
+        while (true) {
+            System.out.print("\nVagon raqamini kiriting!: ");
+            int number = Integer.parseInt(scanner.nextLine().trim());
+            Wagon wagon = trip.findOne(number);
+            if (wagon != null) {
+                System.out.printf("💰 Bu vagonda o'rin narxi: %,.0f so'm%n", trip.getBasePrice() * wagon.getMultiplier());
+                wagon.printSeats();
+                return;
+            }
+            System.out.println("Kechirasiz " + number + " raqamli vagon bu poyezdda yo'q!");
         }
     }
 

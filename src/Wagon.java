@@ -21,4 +21,16 @@ public abstract class Wagon {
     public int getNumber() {
         return this.number;
     }
+
+    public  void  printSeats(){
+        System.out.printf("%n🚃 %d-vagon (%s) — %d o'rin%n", number, getType(), seats.length);
+        System.out.println("-----------------------------------");
+        for (int i = 0; i < seats.length; i++) {
+            System.out.printf("%3d %s   ", seats[i].getNumber(), seats[i].isBooked() ? "❌" : "✅");
+            if ((i + 1) % 6 == 0) System.out.println();
+        }
+        if (seats.length % 6 != 0) System.out.println();
+        System.out.println("-----------------------------------");
+        System.out.println("✅ bo'sh    ❌ band");
+    }
 }
