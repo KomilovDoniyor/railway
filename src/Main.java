@@ -36,9 +36,9 @@ public class Main {
     private static void printMenu() {
         System.out.println("""
                 \tMenu\t
-                1. Barcha reyslarni ko'rish   //Kamol
-                2. Reys qidirish (qayerdan -> qayerga) //Kamol
-                3. Chipta sotib olish//Kamol
+                1. Barcha reyslarni ko'rish   //Komol
+                2. Reys qidirish (qayerdan -> qayerga) //Komol
+                3. Chipta sotib olish//Komol
                 4. Mening chiptalarim //Abrorbek
                 5. Chiptani qaytarish //Abrorbek
                 6. Balansni to'ldirish //Nuriddin
