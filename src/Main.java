@@ -7,8 +7,8 @@ public class Main {
 
     public static void main(String[] args) {
 
-//        Passenger passenger = enterPassengerInfo();
-//        if (passenger == null) return;
+        Passenger passenger = enterPassengerInfo();
+        if (passenger == null) return;
 
         boolean isRunning = true;
         while (isRunning) {
@@ -22,11 +22,11 @@ public class Main {
                     Wagon wagon = findOneWagon(trip);
                     Seat seat = chooseSeat(trip, wagon);
                     if (seat == null) break;
-//                    Ticket ticket = office.sell(passenger, trip, wagon, seat);
-//                    if (ticket != null) {
-//                        ticket.print();
-//                        System.out.printf("💳 Qolgan balans: %,.0f so'm%n", passenger.getBalance());
-//                    }
+                    Ticket ticket = office.sell(passenger, trip, wagon, seat);
+                    if (ticket != null) {
+                        ticket.print();
+                        System.out.printf("💳 Qolgan balans: %,.0f so'm%n", passenger.getBalance());
+                    }
                     break;
                 case 2:
                     searchTrips(office);
