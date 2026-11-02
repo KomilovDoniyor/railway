@@ -15,7 +15,8 @@ public class Main {
             case 1:
                 findAllTrips();
                 Trip trip = findOneTripById();
-                findOneWagon(trip);
+                Wagon wagon = findOneWagon(trip);
+                Seat seat = chooseSeat(trip, wagon);
                 break;
         }
 
@@ -112,7 +113,7 @@ public class Main {
         }
     }
 
-    private static void findOneWagon(Trip trip) {
+    private static Wagon findOneWagon(Trip trip) {
         while (true) {
             System.out.print("\nVagon raqamini kiriting!: ");
             int number = Integer.parseInt(scanner.nextLine().trim());
@@ -120,14 +121,53 @@ public class Main {
             if (wagon != null) {
                 System.out.printf("💰 Bu vagonda o'rin narxi: %,.0f so'm%n", trip.getBasePrice() * wagon.getMultiplier());
                 wagon.printSeats();
-                return;
+                return wagon;
             }
             System.out.println("Kechirasiz " + number + " raqamli vagon bu poyezdda yo'q!");
         }
     }
 
-    private static void buyTicket(){
-        
+    private static Seat chooseSeat(Trip trip, Wagon wagon) {
+        double price = trip.getBasePrice() * wagon.getMultiplier();
+        while (true) {
+            System.out.print("O'rin raqamni kiritng: ");
+            int number = Integer.parseInt(scanner.nextLine().trim());
+            Seat seat = null;
+            for (Seat s : wagon.getSeats()) {
+                if (s.getNumber() == number) {
+                    seat = s;
+                    break;
+                }
+            }
+            if (seat == null) {
+                System.out.println("❌ " + number + " raqamli o'rin bu vagonda yo'q!");
+            }
+            if (seat.isBooked()) {
+                System.out.println("❌ " + number + "-o'rin band. Boshqa o'rin tanlang.");
+            }
+            System.out.println("\n=========================================");
+            System.out.println("           O'RIN MA'LUMOTLARI            ");
+            System.out.println("=========================================");
+            System.out.println("🆔 Reys     : " + trip.getId());
+            System.out.println("🚆 Poyezd   : " + trip.getTrain().getName() + " (" + trip.getTrain().getNumber() + ")");
+            System.out.println("📍 Qayerdan : " + trip.getFromCity());
+            System.out.println("🏁 Qayerga  : " + trip.getToCity());
+            System.out.println("📅 Sana     : " + trip.getDate());
+            System.out.println("⏰ Vaqt     : " + trip.getTime());
+            System.out.println("🚃 Vagon    : " + wagon.getNumber() + "-vagon (" + wagon.getType() + ")");
+            System.out.println("💺 O'rin    : " + seat.getNumber());
+            System.out.printf("💰 Narxi    : %,.0f so'm%n", price);
+            System.out.println("=========================================");
+            System.out.print("Shu o'rinni olasizmi? (y/n): ");
+
+            String answer = scanner.nextLine().trim().toLowerCase();
+            if (answer.equals("y")) return seat;
+            if (answer.equals("n")) {
+                System.out.println("Bekor qilindi.");
+                return null;
+            }
+            System.out.println("⚠️ Faqat y yoki n kiriting.");
+        }
     }
 
 }

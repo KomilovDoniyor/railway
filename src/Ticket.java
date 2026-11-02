@@ -1,4 +1,4 @@
-public class Ticket implements Printable{
+public class Ticket implements Printable {
 
     private int id;
     private Passenger passenger;
@@ -21,5 +21,13 @@ public class Ticket implements Printable{
     @Override
     public void print() {
 
+    }
+
+    public Passenger getPassenger() {
+        return this.passenger;
+    }
+
+    public TicketType getStatus() {
+        return this.status;
     }
 }

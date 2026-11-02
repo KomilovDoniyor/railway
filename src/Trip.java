@@ -53,7 +53,6 @@ public class Trip implements Printable {
         System.out.println("⏰ Vaqt      : " + getTime());
         System.out.println("📍 Qayerdan  : " + getFromCity());
         System.out.println("🏁 Qayerga   : " + getToCity());
-        System.out.printf("💰 Narxi     : %,.0f so'm%n", getBasePrice());
         System.out.println("-----------------------------------");
     }
 
@@ -67,8 +66,8 @@ public class Trip implements Printable {
             for (Seat seat : wagon.getSeats()) {
                 if (!seat.isBooked()) free++;
             }
-            System.out.printf("  %d-vagon | %-9s | %d o'rin | bo'sh: %d%n",
-                    wagon.getNumber(), wagon.getType(), wagon.getSeats().length, free);
+            System.out.printf("  %d-vagon | %-9s | %d o'rin | bo'sh: %-3d | narxi: %,.0f so'm%n",
+                    wagon.getNumber(), wagon.getType(), wagon.getSeats().length, free, getBasePrice() * wagon.getMultiplier());
         }
         System.out.println("-----------------------------------");
     }
