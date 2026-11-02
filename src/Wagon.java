@@ -14,6 +14,8 @@ public abstract class Wagon {
 
     public abstract double getMultiplier();
 
+    public abstract Wagon copy();
+
     public Seat[] getSeats() {
         return this.seats;
     }
@@ -33,4 +35,5 @@ public abstract class Wagon {
         System.out.println("-----------------------------------");
         System.out.println("✅ bo'sh    ❌ band");
     }
+
 }

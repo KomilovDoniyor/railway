@@ -14,7 +14,7 @@ public class Trip implements Printable {
         this.date = date;
         this.time = time;
         this.basePrice = basePrice;
-        this.train = train;
+        this.train = train.copy();
     }
 
     public int getId() {

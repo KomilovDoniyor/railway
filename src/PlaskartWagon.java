@@ -13,4 +13,9 @@ public class PlaskartWagon extends Wagon { //inheritance
     public double getMultiplier() {
         return 1;
     }
+
+    @Override
+    public Wagon copy() {
+        return new PlaskartWagon(getNumber(), getSeats().length);
+    }
 }

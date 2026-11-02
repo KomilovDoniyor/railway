@@ -13,4 +13,9 @@ public class KupeWagon extends Wagon {
     public double getMultiplier() {
         return 1.5;
     }
+
+    @Override
+    public Wagon copy() {
+        return new KupeWagon(getNumber(), getSeats().length);
+    }
 }

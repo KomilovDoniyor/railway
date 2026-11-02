@@ -9,6 +9,14 @@ public class Train {
         this.wagons = wagons;
     }
 
+    public Train copy() {
+        Wagon[] copies = new Wagon[wagons.length];
+        for (int i = 0; i < wagons.length; i++) {
+            copies[i] = wagons[i].copy();
+        }
+        return new Train(number, name, copies);
+    }
+
     public String getNumber() {
         return number;
     }

@@ -13,4 +13,9 @@ public class BiznesWagon extends Wagon {
     public double getMultiplier() {
         return 2;
     }
+
+    @Override
+    public Wagon copy() {
+        return new BiznesWagon(getNumber(), getSeats().length);
+    }
 }

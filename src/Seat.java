@@ -15,4 +15,9 @@ public class Seat {
     public boolean isBooked() {
         return booked;
     }
+
+    public void book(boolean changeBooked) {
+        this.booked = changeBooked;
+    }
+
 }
