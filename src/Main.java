@@ -7,8 +7,8 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Passenger passenger = enterPassengerInfo();
-        if (passenger == null) return;
+//        Passenger passenger = enterPassengerInfo();
+//        if (passenger == null) return;
 
         boolean isRunning = true;
         while (isRunning) {
@@ -22,13 +22,15 @@ public class Main {
                     Wagon wagon = findOneWagon(trip);
                     Seat seat = chooseSeat(trip, wagon);
                     if (seat == null) break;
-                    Ticket ticket = office.sell(passenger, trip, wagon, seat);
-                    if (ticket != null) {
-                        ticket.print();
-                        System.out.printf("💳 Qolgan balans: %,.0f so'm%n", passenger.getBalance());
-                    }
+//                    Ticket ticket = office.sell(passenger, trip, wagon, seat);
+//                    if (ticket != null) {
+//                        ticket.print();
+//                        System.out.printf("💳 Qolgan balans: %,.0f so'm%n", passenger.getBalance());
+//                    }
                     break;
-                case 2: //findById
+                case 2:
+                    searchTrips(office);
+
             }
         }
     }
@@ -38,7 +40,7 @@ public class Main {
                 \tMenu\t
                 1. Barcha reyslarni ko'rish   //Komol
                 2. Reys qidirish (qayerdan -> qayerga) //Komol
-                3. Chipta sotib olish//Komol
+                3. Chipta sotib olish //Komol
                 4. Mening chiptalarim //Abrorbek
                 5. Chiptani qaytarish //Abrorbek
                 6. Balansni to'ldirish //Nuriddin
@@ -183,5 +185,11 @@ public class Main {
         }
     }
 
-
+    private static void searchTrips(TicketOffice ticketOffice){
+        System.out.println("Qayerdan: ");
+        String from=scanner.nextLine();
+        System.out.println("Qayerga: ");
+        String to=scanner.nextLine();
+        ticketOffice.searchTrips(from,to);
+    }
 }

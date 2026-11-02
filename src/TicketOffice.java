@@ -41,4 +41,15 @@ public class TicketOffice {
         ticketCount++;
         return ticket;
     }
+
+    public void searchTrips(String from,String to){
+        int found=0;
+        for (Trip trip : trips) {
+            if(trip.getFromCity().toLowerCase().equals(from.toLowerCase()) && trip.getToCity().toLowerCase().equals(to.toLowerCase())) {
+                trip.print();
+                found++;
+            }
+        }
+        if(found==0) System.out.println("Bunday trips mavjud emas !");
+    }
 }
