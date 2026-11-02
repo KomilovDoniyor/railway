@@ -36,13 +36,13 @@ public class Main {
     private static void printMenu() {
         System.out.println("""
                 \tMenu\t
-                1. Barcha reyslarni ko'rish
-                2. Reys qidirish (qayerdan -> qayerga)
-                3. Chipta sotib olish
-                4. Mening chiptalarim
-                5. Chiptani qaytarish
-                6. Balansni to'ldirish
-                0. Chiqish""");
+                1. Barcha reyslarni ko'rish   //Kamol
+                2. Reys qidirish (qayerdan -> qayerga) //Kamol
+                3. Chipta sotib olish//Kamol
+                4. Mening chiptalarim //Abrorbek
+                5. Chiptani qaytarish //Abrorbek
+                6. Balansni to'ldirish //Nuriddin
+                0. Chiqish"""); //Nuridd
         System.out.print("\nRaqam kiriting: ");
     }
 
