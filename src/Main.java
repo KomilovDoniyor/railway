@@ -7,7 +7,8 @@ public class Main {
 
     public static void main(String[] args) {
 
-//        enterPassengerInfo();
+        Passenger passenger = enterPassengerInfo();
+        if (passenger == null) return;
         printMenu();
 
         int check = Integer.parseInt(scanner.nextLine().trim());
@@ -35,7 +36,7 @@ public class Main {
         System.out.print("\nRaqam kiriting: ");
     }
 
-    private static void enterPassengerInfo() {
+    private static Passenger enterPassengerInfo() {
         System.out.println("\n\nAssalomu alaykum! Poyezdlar platformasiga xush kelibsiz!");
         System.out.print("\uD83D\uDC64Iltmos F.I.SH kiriting: ");
         String name = scanner.nextLine();
@@ -48,17 +49,17 @@ public class Main {
         String check = scanner.nextLine();
         switch (check) {
             case "y":
-                new Passenger(name, passport, balance);
+                Passenger passenger = new Passenger(name, passport, balance);
                 System.out.println("\n=========================================");
                 System.out.println(" ✅ Rahmat! Ma'lumotlar muvaffaqiyatli saqlandi.");
                 System.out.println("=========================================\n");
-                break;
+                return passenger;
             case "n":
                 System.err.println("❌ Amaliyot bekor qilindi.");
-                return;
+                return null;
             default:
                 System.err.println("⚠️ Noto'g'ri buyruq kiritildi!");
-                return;
+                return null;
         }
     }
 
@@ -141,9 +142,11 @@ public class Main {
             }
             if (seat == null) {
                 System.out.println("❌ " + number + " raqamli o'rin bu vagonda yo'q!");
+                continue;
             }
             if (seat.isBooked()) {
                 System.out.println("❌ " + number + "-o'rin band. Boshqa o'rin tanlang.");
+                continue;
             }
             System.out.println("\n=========================================");
             System.out.println("           O'RIN MA'LUMOTLARI            ");

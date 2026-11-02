@@ -16,8 +16,12 @@ public class Seat {
         return booked;
     }
 
-    public void book(boolean changeBooked) {
-        this.booked = changeBooked;
+    public void book() {
+        this.booked = true;
+    }
+
+    public void free() {
+        this.booked = false;
     }
 
 }
