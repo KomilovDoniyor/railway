@@ -18,6 +18,12 @@ public class Main {
                 Trip trip = findOneTripById();
                 Wagon wagon = findOneWagon(trip);
                 Seat seat = chooseSeat(trip, wagon);
+                if (seat == null) break;
+                Ticket ticket = office.sell(passenger, trip, wagon, seat);
+                if (ticket != null) {
+                    ticket.print();
+                    System.out.printf("💳 Qolgan balans: %,.0f so'm%n", passenger.getBalance());
+                }
                 break;
         }
 

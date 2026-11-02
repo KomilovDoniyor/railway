@@ -1,9 +1,14 @@
 public enum TicketType {
     ACTIVE("Foal"), RETURNED("Qaytarilgan");
 
-    private final String getName;
+    private final String label;
 
-    TicketType(String getName) {
-        this.getName = getName;
+
+    TicketType(String label) {
+        this.label = label;
+    }
+
+    public String getName() {
+        return label;
     }
 }

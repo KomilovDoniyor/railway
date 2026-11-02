@@ -6,7 +6,7 @@ public class Passenger {
     public Passenger(String fullName, String passport, double balance) {
         this.fullName = fullName;
         this.passport = passport;
-        setBalance(balance);
+        this.balance = balance < 0 ? 0 : balance;
     }
 
     public String getFullName() {
@@ -21,11 +21,15 @@ public class Passenger {
         return balance;
     }
 
-    public void setBalance(double balance) {
-        if (balance < 0) {
-            System.err.println("Balans manfiy bolishi mumkin emas!");
-        } else {
-            this.balance = balance;
-        }
+    public boolean pay(double amount) {
+        if (amount <= 0 || amount > balance) return false;
+        balance -= amount;
+        return true;
+    }
+
+    public boolean topUp(double amount){
+        if (amount <= 0) return false;
+        balance += amount;
+        return true;
     }
 }
