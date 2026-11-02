@@ -80,8 +80,4 @@ public class Trip implements Printable {
         }
         return null;
     }
-
-    public void printWagon(){
-        
-    };
 }
