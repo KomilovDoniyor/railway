@@ -52,21 +52,21 @@ public class Main {
         System.out.print("💳 Boshlang'ich hisob balansini kiriting (so'mda, masalan: 50000): ");
         double balance = Double.parseDouble(scanner.nextLine());
         System.out.println("\nPassenger ma'lumotlari\n\n\uD83D\uDC64Ism: " + name + "\n\uD83D\uDCC4Passport: " + passport + "\n💳 Balance: " + balance);
-        System.out.print("Malumotlarni tasdiqlaysizmi (y/n): ");
-        String check = scanner.nextLine();
-        switch (check) {
-            case "y":
+        while (true) {
+            System.out.print("Malumotlarni tasdiqlaysizmi (y/n): ");
+            String check = scanner.nextLine().trim().toLowerCase();
+            if (check.equals("y")) {
                 Passenger passenger = new Passenger(name, passport, balance);
                 System.out.println("\n=========================================");
                 System.out.println(" ✅ Rahmat! Ma'lumotlar muvaffaqiyatli saqlandi.");
                 System.out.println("=========================================\n");
                 return passenger;
-            case "n":
-                System.err.println("❌ Amaliyot bekor qilindi.");
+            } else if (check.equals("n")) {
+                System.out.println("❌ Amaliyot bekor qilindi.");
                 return null;
-            default:
-                System.err.println("⚠️ Noto'g'ri buyruq kiritildi!");
-                return null;
+            } else {
+                System.out.println("⚠️ Noto'g'ri buyruq kiritildi! Iltimos, 'y' yoki 'n' ni tanlang.\n");
+            }
         }
     }
 
