@@ -9,28 +9,23 @@ public class Main {
 
         Passenger passenger = enterPassengerInfo();
         if (passenger == null) return;
-
         boolean isRunning = true;
         while (isRunning) {
             printMenu();
-
             int check = Integer.parseInt(scanner.nextLine().trim());
             switch (check) {
                 case 1:
-                    findAllTrips();
-                    Trip trip = findOneTripById();
-                    Wagon wagon = findOneWagon(trip);
-                    Seat seat = chooseSeat(trip, wagon);
-                    if (seat == null) break;
-                    Ticket ticket = office.sell(passenger, trip, wagon, seat);
-                    if (ticket != null) {
-                        ticket.print();
-                        System.out.printf("💳 Qolgan balans: %,.0f so'm%n", passenger.getBalance());
-                    }
+                    findTicket();
                     break;
                 case 2:
                     searchTrips(office);
-
+                    break;
+                case 3:
+                    buyForTicket(passenger);
+                    break;
+                case 0:
+                    isRunning = false;
+                    break;
             }
         }
     }
@@ -102,6 +97,49 @@ public class Main {
         return result;
     }
 
+    private static void findTicket() {
+        while (true) {
+            findAllTrips();
+            Trip trip = findOneTripById();
+            if (trip == null) return;
+            while (true) {
+                Wagon wagon = findOneWagon(trip);
+                if (wagon == null) break;
+                Seat seat = chooseSeat(trip, wagon);
+                if (seat == null) continue;
+                return;
+            }
+        }
+
+
+    }
+
+    private static void buyForTicket(Passenger passenger) {
+        while (true) {
+            findAllTrips();
+            Trip trip = findOneTripById();
+            if (trip == null) return;
+
+            while (true) {
+                Wagon wagon = findOneWagon(trip);
+                if (wagon == null) break;
+
+                Seat seat = chooseSeat(trip, wagon);
+                if (seat == null) continue;
+                if (buyTicket(seat) == null) continue;
+
+                Ticket ticket = office.sell(passenger, trip, wagon, seat);
+
+                if (ticket != null) {
+                    ticket.print();
+                    System.out.printf("💳 Qolgan balans: %,.0f so'm%n%n%n", passenger.getBalance());
+                }
+
+                return;
+            }
+        }
+    }
+
     private static void findAllTrips() {
         System.out.println("\n=========================================");
         System.out.println("            REYS MA'LUMOTLARI            ");
@@ -115,21 +153,21 @@ public class Main {
 
     private static Trip findOneTripById() {
         while (true) {
-            System.out.print("\nID raqamni kiriting!: ");
+            System.out.print("\nID raqamni kiriting (0 - orqaga): ");
             int id = Integer.parseInt(scanner.nextLine().trim());
+            if (id == 0) return null;
             Trip trip = office.findTripById(id);
-            if (trip != null) {
-                trip.printWagons();
-                return trip;
-            }
+            if (trip != null) return trip;
             System.out.println("Kechirasiz bunday " + id + " tripId raqamli findTrip mavjud emas!");
         }
     }
 
     private static Wagon findOneWagon(Trip trip) {
+        trip.printWagons();
         while (true) {
-            System.out.print("\nVagon raqamini kiriting!: ");
+            System.out.print("\nVagon raqamini kiriting (0 - orqaga): ");
             int number = Integer.parseInt(scanner.nextLine().trim());
+            if (number == 0) return null;
             Wagon wagon = trip.findOne(number);
             if (wagon != null) {
                 System.out.printf("💰 Bu vagonda o'rin narxi: %,.0f so'm%n", trip.getBasePrice() * wagon.getMultiplier());
@@ -143,8 +181,9 @@ public class Main {
     private static Seat chooseSeat(Trip trip, Wagon wagon) {
         double price = trip.getBasePrice() * wagon.getMultiplier();
         while (true) {
-            System.out.print("O'rin raqamni kiritng: ");
+            System.out.print("O'rin raqamni kiritng (0 - orqaga): ");
             int number = Integer.parseInt(scanner.nextLine().trim());
+            if (number == 0) return null;
             Seat seat = null;
             for (Seat s : wagon.getSeats()) {
                 if (s.getNumber() == number) {
@@ -173,8 +212,21 @@ public class Main {
             System.out.println("💺 O'rin    : " + seat.getNumber());
             System.out.printf("💰 Narxi    : %,.0f so'm%n", price);
             System.out.println("=========================================");
-            System.out.print("Shu o'rinni olasizmi? (y/n): ");
+            return seat;
+        }
+    }
 
+    private static void searchTrips(TicketOffice ticketOffice) {
+        System.out.println("Qayerdan: ");
+        String from = scanner.nextLine();
+        System.out.println("Qayerga: ");
+        String to = scanner.nextLine();
+        ticketOffice.searchTrips(from, to);
+    }
+
+    private static Seat buyTicket(Seat seat) {
+        while (true) {
+            System.out.print("Shu o'rinni olasizmi? (y/n): ");
             String answer = scanner.nextLine().trim().toLowerCase();
             if (answer.equals("y")) return seat;
             if (answer.equals("n")) {
@@ -183,13 +235,5 @@ public class Main {
             }
             System.out.println("⚠️ Faqat y yoki n kiriting.");
         }
-    }
-
-    private static void searchTrips(TicketOffice ticketOffice){
-        System.out.println("Qayerdan: ");
-        String from=scanner.nextLine();
-        System.out.println("Qayerga: ");
-        String to=scanner.nextLine();
-        ticketOffice.searchTrips(from,to);
     }
 }
