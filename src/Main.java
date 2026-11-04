@@ -28,7 +28,9 @@ public class Main {
                         System.out.printf("💳 Qolgan balans: %,.0f so'm%n", passenger.getBalance());
                     }
                     break;
-                case 2: //findById
+                case 2:
+                    searchTrips(office);
+
             }
         }
     }
@@ -38,7 +40,7 @@ public class Main {
                 \tMenu\t
                 1. Barcha reyslarni ko'rish   //Komol
                 2. Reys qidirish (qayerdan -> qayerga) //Komol
-                3. Chipta sotib olish//Komol
+                3. Chipta sotib olish //Komol
                 4. Mening chiptalarim //Abrorbek
                 5. Chiptani qaytarish //Abrorbek
                 6. Balansni to'ldirish //Nuriddin
@@ -183,5 +185,11 @@ public class Main {
         }
     }
 
-
+    private static void searchTrips(TicketOffice ticketOffice){
+        System.out.println("Qayerdan: ");
+        String from=scanner.nextLine();
+        System.out.println("Qayerga: ");
+        String to=scanner.nextLine();
+        ticketOffice.searchTrips(from,to);
+    }
 }
