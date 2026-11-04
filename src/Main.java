@@ -12,7 +12,7 @@ public class Main {
         boolean isRunning = true;
         while (isRunning) {
             printMenu();
-            int check = Integer.parseInt(scanner.nextLine().trim());
+            int check = scanner.nextInt();
             switch (check) {
                 case 1:
                     findTicket();
@@ -23,11 +23,27 @@ public class Main {
                 case 3:
                     buyForTicket(passenger);
                     break;
+                case 6:
+                    addBalance(passenger);
+                    break;
                 case 0:
                     isRunning = false;
                     break;
+
             }
         }
+    }
+
+    private static void addBalance(Passenger passenger) {
+        System.out.println("To`ldirmoqchi bolgan summangizni kiriting: ");
+        double balance = scanner.nextDouble();
+         if (passenger.addBalance(balance)){
+             System.out.println("Sizning balancingiz to`ldirildi! " + balance);
+             System.out.println("Sizning umumiy balanceinigiz " + passenger.getBalance());
+
+         }else {
+             System.out.println("Balance manfiy bo`lmasligi kerak!");
+         }
     }
 
     private static void printMenu() {

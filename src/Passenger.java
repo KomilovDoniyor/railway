@@ -27,7 +27,7 @@ public class Passenger {
         return true;
     }
 
-    public boolean topUp(double amount){
+    public boolean addBalance(double amount){
         if (amount <= 0) return false;
         balance += amount;
         return true;
