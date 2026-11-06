@@ -35,14 +35,14 @@ public class Main {
     }
 
     private static void addBalance(Passenger passenger) {
-        System.out.println("To`ldirmoqchi bolgan summangizni kiriting: ");
+        System.out.println("To`ldirmoqchi bolgan summangizni kiriting💵: ");
         double balance = scanner.nextDouble();
          if (passenger.addBalance(balance)){
-             System.out.println("Sizning balancingiz to`ldirildi! " + balance);
-             System.out.println("Sizning umumiy balanceinigiz " + passenger.getBalance());
+             System.out.println("Sizning balancingiz to`ldirildi❕ " + balance);
+             System.out.println("Sizning umumiy balanceinigiz 🔰:" + passenger.getBalance());
 
          }else {
-             System.out.println("Balance manfiy bo`lmasligi kerak!");
+             System.out.println("Balance manfiy bo`lmasligi kerak❗");
          }
     }
 
